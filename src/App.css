@@ -1,0 +1,233 @@
+/* STILI GLOBALI */
+
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color: var(--text);
+  background: #fff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* TITOLI */
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 2rem;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+}
+
+h2 {
+  font-size: 1.333rem;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+}
+
+p {
+  margin: 0;
+}
+
+main {
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.gestore-dipendenti {
+  display: flex;
+}
+
+/* Dashboard */
+
+.gestore-dipendenti .dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.gestore-dipendenti .dashboard .dipendenti {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #d3d3d3;
+  border-radius: 15px;
+  padding: 15px;
+  width: 100%;
+}
+
+/* Schede dipendenti */
+
+.gestore-dipendenti .dipendente {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+}
+
+/* Pulsanti */
+
+button {
+  cursor: pointer;
+}
+
+.gestore-dipendenti .dipendente button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #d3d3d3;
+  background-color: transparent;
+  padding: 5px 15px;
+  border-radius: 30px;
+  font-size: 0.750rem;
+  font-weight: 600;
+  color: #666;
+}
+
+.gestore-dipendenti .dipendente .azioni button:hover {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.gestore-dipendenti .dipendente .azioni button.salva:hover {
+  background-color: green;
+  color: #fff;
+  border-color: green;
+}
+
+/* Form di modifica */
+
+.dipendente-in-modifica {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.dipendente-in-modifica form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.dipendente-in-modifica form label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  padding: 10px 20px;
+  border: 1px solid #f2f2f2;
+  border-radius: 30px;
+}
+
+.dipendente-in-modifica form input {
+  border-color: #d3d3d3;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Pulsanti delle azioni */
+
+.dipendente-in-modifica .azioni,
+.info-dipendente + .azioni {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Messaggi di errore */
+
+.dipendente-in-modifica .errore {
+  font-size: 0.750rem;
+  color: red;
+}
+
+.dipendente-in-modifica form + .errore {
+  margin-top: 15px;
+}
+
+/* Accessibilità: focus visibile */
+
+input:focus-visible,
+button:focus-visible {
+  outline: 2px solid black;
+  outline-offset: 2px;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+   @media (max-width: 1024px) {
+  :root {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 2.250rem;
+    margin: 20px 0;
+  }
+
+  h2 {
+    font-size: 1.250rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  main {
+    padding: 20px;
+  }
+
+  .gestore-dipendenti .dipendente {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+}
