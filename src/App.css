@@ -1,233 +1,450 @@
-/* STILI GLOBALI */
-
 :root {
   --text: #6b6375;
   --text-h: #08060d;
-
+  --colore-saliente: #007a56;
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
   color: var(--text);
   background: #fff;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  background: url('assets/bg-dipendenti.png') center / cover no-repeat fixed;
 }
 
 #root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  min-height: 100svh;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  width: 1126px;
+  max-width: 100%;
+  min-height: 100svh;
+  margin: 0 auto;
+  text-align: center;
 }
 
-/* TITOLI */
+/* =========================================================
+   CONTENITORE E TIPOGRAFIA
+   ========================================================= */
 
-h1,
-h2 {
+.gestore-dipendenti {
+  display: flex;
+  flex-direction: column;
+  padding: 60px;
+}
+
+.gestore-dipendenti h1,
+.gestore-dipendenti h2 {
   font-family: var(--heading);
   font-weight: 500;
   color: var(--text-h);
 }
 
-h1 {
+.gestore-dipendenti h1 {
   font-size: 2rem;
   line-height: 2rem;
   letter-spacing: -1.68px;
-  margin: 32px 0;
+  color: #fff;
+  text-align: left;
+  margin: 0 0 10px;
+  padding: 0 0 15px;
+  border-bottom: 1px dotted #000;
 }
 
-h2 {
+.gestore-dipendenti h2 {
   font-size: 1.333rem;
   line-height: 118%;
   letter-spacing: -0.24px;
-  margin: 0 0 8px;
+  margin: 0 0 5px;
 }
 
-p {
+.gestore-dipendenti h1 + h3 {
+  margin: 0;
+  text-align: left;
+  color: #fff;
+  font-weight: 400;
+}
+
+.gestore-dipendenti p,
+.modale-eliminazione p {
   margin: 0;
 }
 
-main {
-  padding: 60px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+.gestore-dipendenti h4,
+.modale-eliminazione h4 {
+  margin: 0;
 }
 
-.gestore-dipendenti {
-  display: flex;
-}
-
-/* Dashboard */
+/* DASHBOARD */
 
 .gestore-dipendenti .dashboard {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   gap: 20px;
+  margin-top: 90px;
+  border-radius: 15px;
 }
 
-.gestore-dipendenti .dashboard .dipendenti {
+.gestore-dipendenti .dashboard .dipendenti,
+.gestore-dipendenti .dashboard .aggiunta-dipendente {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border: 1px solid #d3d3d3;
-  border-radius: 15px;
-  padding: 15px;
   width: 100%;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Schede dipendenti */
+/* AGGIUNTA DIPENDENTE — BARRA */
 
-.gestore-dipendenti .dipendente {
+.gestore-dipendenti .dashboard .aggiunta-dipendente {
+  min-height: 80px;
+  overflow: hidden;
+}
+
+.gestore-dipendenti .barra-aggiunta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #d3d3d3;
-  border-radius: 10px;
-  padding: 20px;
+  gap: 20px;
+  min-height: 80px;
+  padding: 20px 30px;
+}
+
+.gestore-dipendenti .info-aggiunta {
   text-align: left;
 }
 
-/* Pulsanti */
+.gestore-dipendenti .intestazione-dipendenti > h2,
+.gestore-dipendenti .info-aggiunta > h2 {
+  margin: 0;
+  text-align: left;
+  color: #fff;
+  font-weight: bold;
+}
 
-button {
+.gestore-dipendenti .info-aggiunta > h2 {
+  margin-bottom: 3px;
+}
+
+.gestore-dipendenti .info-aggiunta p {
+  min-height: 20px;
+  color: #d3d3d3;
+  font-size: 0.85rem;
+}
+
+.gestore-dipendenti .barra-aggiunta > button.aggiungi {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-shrink: 0;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--colore-saliente);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
 }
 
-.gestore-dipendenti .dipendente button {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  border: 1px solid #d3d3d3;
-  background-color: transparent;
-  padding: 5px 15px;
-  border-radius: 30px;
-  font-size: 0.750rem;
-  font-weight: 600;
-  color: #666;
+.gestore-dipendenti .barra-aggiunta > button.aggiungi:hover {
+  background-color: #005c41;
 }
 
-.gestore-dipendenti .dipendente .azioni button:hover {
-  background-color: #000;
-  color: #fff;
-  border-color: #000;
+.gestore-dipendenti .dashboard .aggiunta-dipendente:has(.aggiungi-dipendente) {
+  padding: 30px;
 }
 
-.gestore-dipendenti .dipendente .azioni button.salva:hover {
-  background-color: green;
-  color: #fff;
-  border-color: green;
+/* LISTA E SCHEDE DIPENDENTI */
+
+.gestore-dipendenti .dashboard .dipendenti {
+  padding: 30px;
 }
 
-/* Form di modifica */
-
-.dipendente-in-modifica {
+.gestore-dipendenti .intestazione-dipendenti {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  gap: 20px;
-  align-items: flex-start;
+  gap: 3px;
+  margin-bottom: 15px;
 }
 
-.dipendente-in-modifica form {
+.gestore-dipendenti .dipendenti .riepilogo-dipendenti {
+  text-align: left;
+  font-size: 0.9rem;
+  color: #d3d3d3;
+}
+
+.gestore-dipendenti .dipendente {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+/* FORM DI AGGIUNTA E MODIFICA */
+
+.gestore-dipendenti .modifica-dipendente,
+.gestore-dipendenti .aggiungi-dipendente {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background-color: #fff;
+  text-align: left;
+}
+
+.gestore-dipendenti .aggiungi-dipendente {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.gestore-dipendenti .modifica-dipendente h4,
+.gestore-dipendenti .aggiungi-dipendente h4 {
+  margin-bottom: 20px;
+}
+
+.gestore-dipendenti .modifica-dipendente form,
+.gestore-dipendenti .aggiungi-dipendente form {
   display: flex;
   flex-direction: column;
   gap: 15px;
   width: 100%;
 }
 
-.dipendente-in-modifica form label {
+.gestore-dipendenti .modifica-dipendente form label,
+.gestore-dipendenti .aggiungi-dipendente form label {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-input {
+.gestore-dipendenti input {
   padding: 10px 20px;
   border: 1px solid #f2f2f2;
   border-radius: 30px;
 }
 
-.dipendente-in-modifica form input {
-  border-color: #d3d3d3;
+.gestore-dipendenti .modifica-dipendente form input,
+.gestore-dipendenti .aggiunta-dipendente form input {
   width: 100%;
   min-width: 0;
+  border-color: #d3d3d3;
 }
 
-/* Pulsanti delle azioni */
+.gestore-dipendenti .aggiunta-dipendente form {
+  align-self: flex-end;
+}
 
-.dipendente-in-modifica .azioni,
-.info-dipendente + .azioni {
+/* PULSANTI E AZIONI */
+
+.gestore-dipendenti button,
+.modale-eliminazione button {
+  cursor: pointer;
+}
+
+.gestore-dipendenti .dipendente button,
+.gestore-dipendenti .aggiungi-dipendente button,
+.modale-eliminazione .modale-eliminazione-info button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 15px;
+  border: 1px solid #d3d3d3;
+  border-radius: 30px;
+  background-color: transparent;
+  color: #666;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.gestore-dipendenti .modifica-dipendente .azioni,
+.gestore-dipendenti .aggiungi-dipendente .azioni,
+.gestore-dipendenti .info-dipendente + .azioni,
+.modale-eliminazione .modale-eliminazione-info .azioni {
   display: flex;
   flex-direction: row;
   gap: 10px;
+}
+
+.gestore-dipendenti .modifica-dipendente .azioni,
+.gestore-dipendenti .aggiungi-dipendente .azioni,
+.modale-eliminazione .modale-eliminazione-info .azioni {
   margin-top: 10px;
 }
 
-/* Messaggi di errore */
-
-.dipendente-in-modifica .errore {
-  font-size: 0.750rem;
-  color: red;
+.modale-eliminazione .modale-eliminazione-info .azioni {
+  justify-content: center;
 }
 
-.dipendente-in-modifica form + .errore {
-  margin-top: 15px;
+.gestore-dipendenti .dipendente .azioni button:hover,
+.gestore-dipendenti .aggiungi-dipendente .azioni button:hover,
+.modale-eliminazione .modale-eliminazione-info button:hover {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
 }
 
-/* Accessibilità: focus visibile */
+.gestore-dipendenti .aggiungi-dipendente .azioni button.aggiungi:hover,
+.gestore-dipendenti .dipendente .azioni button.salva:hover {
+  background-color: var(--colore-saliente);
+  color: #fff;
+  border-color: var(--colore-saliente);
+}
 
-input:focus-visible,
-button:focus-visible {
+.gestore-dipendenti .dipendente .azioni button.elimina:hover,
+.modale-eliminazione .modale-eliminazione-info button.elimina:hover {
+  background-color: rgb(175, 0, 0);
+  color: #fff;
+  border-color: rgb(175, 0, 0);
+}
+
+.gestore-dipendenti input:focus-visible,
+.gestore-dipendenti button:focus-visible,
+.modale-eliminazione button:focus-visible {
   outline: 2px solid black;
   outline-offset: 2px;
 }
 
-/* ========================================
-   RESPONSIVE
-   ======================================== */
+/* MESSAGGI DI ERRORE E SUCCESSO */
 
-   @media (max-width: 1024px) {
+.gestore-dipendenti .modifica-dipendente .errore,
+.gestore-dipendenti .aggiungi-dipendente .errore {
+  color: red;
+  font-size: 0.75rem;
+}
+
+.gestore-dipendenti .modifica-dipendente form + .errore,
+.gestore-dipendenti .aggiunta-dipendente form + .errore {
+  margin-top: 15px;
+}
+
+.gestore-dipendenti .dipendente .successo {
+  position: absolute;
+  right: 20px;
+  bottom: 8px;
+  gap: 10px;
+  color: green;
+  font-size: 0.75rem;
+  animation: messaggiodisuccesso 0.1s linear;
+}
+
+.gestore-dipendenti .info-aggiunta .successo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #a5f3c8;
+  font-size: 0.85rem;
+  animation: messaggiodisuccesso 0.2s ease-out;
+}
+
+@keyframes messaggiodisuccesso {
+  from {
+    transform: translateX(-5%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* MODALE DI ELIMINAZIONE  */
+
+.modale-eliminazione {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modale-eliminazione .modale-eliminazione-info {
+  padding: 60px;
+  border: 1px solid #d3d3d3;
+  border-radius: 15px;
+  background-color: white;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1024px) {
   :root {
     font-size: 16px;
   }
 
-  h1 {
-    font-size: 2.250rem;
+  .gestore-dipendenti h1 {
+    font-size: 2.25rem;
     margin: 20px 0;
   }
 
-  h2 {
-    font-size: 1.250rem;
+  .gestore-dipendenti h2 {
+    font-size: 1.25rem;
   }
 }
 
-@media screen and (max-width: 767px) {
-  main {
-    padding: 20px;
+@media (max-width: 767px) {
+  .gestore-dipendenti {
+    padding: 60px 30px;
+  }
+
+  .gestore-dipendenti .barra-aggiunta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .gestore-dipendenti .barra-aggiunta > button.aggiungi {
+    width: 100%;
   }
 
   .gestore-dipendenti .dipendente {
     flex-direction: column;
     align-items: stretch;
     gap: 15px;
+  }
+
+  .modale-eliminazione {
+    padding: 20px;
+  }
+
+  .modale-eliminazione .modale-eliminazione-info {
+    max-width: 100%;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 380px) {
+  .gestore-dipendenti .modifica-dipendente .azioni,
+  .gestore-dipendenti .aggiungi-dipendente .azioni,
+  .gestore-dipendenti .info-dipendente + .azioni,
+  .modale-eliminazione .modale-eliminazione-info .azioni {
+    flex-direction: column;
+  }
+
+  .gestore-dipendenti .azioni button,
+  .modale-eliminazione .azioni button {
+    justify-content: center;
   }
 }
